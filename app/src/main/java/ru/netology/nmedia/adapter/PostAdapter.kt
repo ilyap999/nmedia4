@@ -50,17 +50,21 @@ class PostViewHolder(
             content.text = post.content
             author.text = post.author
             published.text = post.published
-            textLike.text = longToString(post.likes)
-            textShare.text = longToString(post.shares)
+            //textLike.text = longToString(post.likes)
+            //textShare.text = longToString(post.shares)
             textView.text = longToString(post.views)
 
-            buttonLike.setImageResource(
+            buttonLike.isChecked = post.likedByMe
+            buttonLike.text = "${post.likes}"
+
+            buttonShare.text = "${post.shares}"
+            /*buttonLike.setImageResource(
                 if (post.likedByMe) {
                     R.drawable.ic_baseline_favorite_24
                 } else {
                     R.drawable.ic_baseline_favorite_border_24
                 }
-            )
+            )*/
             buttonLike.setOnClickListener {
                 actionListener.onLikeClicked(post)
             }
