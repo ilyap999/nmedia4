@@ -8,7 +8,8 @@ data class Post(
     val likedByMe: Boolean = false,
     val likes: Long = 0L,
     val shares: Long = 0L,
-    val views: Long = 0L
+    val views: Long = 0L,
+    val video: String? = null
 )
 
 fun longToString(param: Long): String {

@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ interface OnActionListener {
     fun onRemoveClicked(post: Post) = Unit
     fun onLikeClicked(post: Post) = Unit
     fun onShareClicked(post: Post) = Unit
+    fun onVideoClicked(post: Post) = Unit
 }
 
 class PostAdapter(
@@ -50,26 +52,25 @@ class PostViewHolder(
             content.text = post.content
             author.text = post.author
             published.text = post.published
-            //textLike.text = longToString(post.likes)
-            //textShare.text = longToString(post.shares)
             textView.text = longToString(post.views)
-
             buttonLike.isChecked = post.likedByMe
             buttonLike.text = "${post.likes}"
-
             buttonShare.text = "${post.shares}"
-            /*buttonLike.setImageResource(
-                if (post.likedByMe) {
-                    R.drawable.ic_baseline_favorite_24
-                } else {
-                    R.drawable.ic_baseline_favorite_border_24
-                }
-            )*/
+
+            if (post.video == null) {
+                video.visibility = View.GONE
+            } else {
+                video.visibility = View.VISIBLE
+            }
+
             buttonLike.setOnClickListener {
                 actionListener.onLikeClicked(post)
             }
             buttonShare.setOnClickListener {
                 actionListener.onShareClicked(post)
+            }
+            video.setOnClickListener {
+                actionListener.onVideoClicked(post)
             }
 
             menu.setOnClickListener {

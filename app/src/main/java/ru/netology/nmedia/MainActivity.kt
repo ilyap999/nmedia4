@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.launch
 import androidx.activity.viewModels
@@ -42,10 +43,16 @@ class MainActivity : AppCompatActivity() {
                     startActivity(shareIntent)
 
                 }
+
+                override fun onVideoClicked(post: Post) {
+                    val youtubeIntent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                    startActivity(youtubeIntent)
+                }
             }
         )
         binding.posts.adapter = adapter
         viewModel.data.observe(this) { posts -> adapter.posts = posts }
+
         val launcherEdit = registerForActivityResult(EditPostActivityContract()) {text ->
             text ?: return@registerForActivityResult
             viewModel.changeContent(text.toString())
@@ -56,13 +63,8 @@ class MainActivity : AppCompatActivity() {
                 return@observe
             }
 
-            /*val launcherEdit = registerForActivityResult(EditPostActivityContract()) {text ->
-                text ?: return@registerForActivityResult
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-            }*/
             launcherEdit.launch(it.content.toString())
-            //launcherEdit.launch(it.content.toString())
+
             //Открыть видимость группы и установить текст
             /*binding.groupEdit.visibility = View.VISIBLE
             binding.labelText.setText(it.content)
@@ -81,16 +83,6 @@ class MainActivity : AppCompatActivity() {
                 viewModel.changeContent(text.toString())
                 viewModel.save()
 
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-            //Закрыть видимость
-            binding.groupEdit.visibility = View.GONE
-        }*/
-
-/*        binding.cross.setOnClickListener {
-            with(binding.content) {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)

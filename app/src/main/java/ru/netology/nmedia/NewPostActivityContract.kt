@@ -5,10 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 
-/*class NewPostActivityContract: ActivityResultContract<String, String?>() {
-    override fun createIntent(context: Context, input: Unit?): Intent =
-        Intent(context, NewPostActivity::class.java).putExtra()*/
-
 class NewPostActivityContract: ActivityResultContract<Unit, String?>() {
     override fun createIntent(context: Context, input: Unit?): Intent =
         Intent(context, NewPostActivity::class.java)

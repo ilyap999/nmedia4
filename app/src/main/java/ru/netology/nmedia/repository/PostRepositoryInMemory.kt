@@ -15,7 +15,8 @@ class PostRepositoryInMemory : PostRepository {
                 author = "Нетология. Университет интернет-профессий будущего",
                 likes = 10,
                 shares = 1598L,
-                views = 1135000L
+                views = 1135000L,
+                video = "https://youtu.be/GQW-Yx52ku4"
             ),
             Post(
                 id = postId++,
@@ -24,7 +25,8 @@ class PostRepositoryInMemory : PostRepository {
                 author = "Нетология. Университет интернет-профессий будущего",
                 likes = 0,
                 shares = 0,
-                views = 10
+                views = 10,
+                video = "https://youtu.be/GQW-Yx52ku4"
             ),
             Post(
                 id = postId++,
@@ -33,7 +35,8 @@ class PostRepositoryInMemory : PostRepository {
                 author = "Нетология. Университет интернет-профессий будущего",
                 likes = 3,
                 shares = 8,
-                views = 100
+                views = 100,
+                video = "https://youtu.be/GQW-Yx52ku4"
             ),
             Post(
                 id = postId++,
@@ -42,7 +45,8 @@ class PostRepositoryInMemory : PostRepository {
                 author = "Нетология. Университет интернет-профессий будущего",
                 likes = 0,
                 shares = 0,
-                views = 0
+                views = 0,
+                video = "https://youtu.be/GQW-Yx52ku4"
             ),
             Post(
                 id = postId++,
@@ -60,7 +64,8 @@ class PostRepositoryInMemory : PostRepository {
                 author = "Нетология. Университет интернет-профессий будущего",
                 likes = 0,
                 shares = 0,
-                views = 0
+                views = 0,
+                video = "https://youtu.be/GQW-Yx52ku4"
             ),
             Post(
                 id = postId++,
