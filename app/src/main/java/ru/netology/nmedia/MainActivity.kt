@@ -64,32 +64,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             launcherEdit.launch(it.content.toString())
-
-            //Открыть видимость группы и установить текст
-            /*binding.groupEdit.visibility = View.VISIBLE
-            binding.labelText.setText(it.content)
-
-            binding.content.setText(it.content)
-            binding.content.requestFocus()*/
         }
-
-/*        binding.save.setOnClickListener {
-            with(binding.content) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(context, "Content must not be empty!", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-            //Закрыть видимость
-            binding.groupEdit.visibility = View.GONE
-        }*/
 
         val launcher = registerForActivityResult(NewPostActivityContract()) {text ->
             text ?: return@registerForActivityResult
