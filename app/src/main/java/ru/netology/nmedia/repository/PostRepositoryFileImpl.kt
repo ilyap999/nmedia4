@@ -31,6 +31,7 @@ class PostRepositoryFileImpl(
     override fun save(post: Post) {
         if (post.id == 0L) {
             val newPosts = listOf(post.copy(id = postId++))
+            //val newPosts = listOf(post.copy(id = posts.lastOrNull()?.id?.inc() ?: 1))
             data.value = newPosts + data.value.orEmpty()
             sync()
             return

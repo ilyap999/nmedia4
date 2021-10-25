@@ -3,20 +3,29 @@ package ru.netology.nmedia
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.adapter.OnActionListener
 import ru.netology.nmedia.adapter.PostAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val viewModel: PostViewModel by viewModels()
+class FeedFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
+
+        val viewModel: PostViewModel by activityViewModels()
         val adapter = PostAdapter (
 
             object : OnActionListener {
@@ -51,28 +60,32 @@ class MainActivity : AppCompatActivity() {
             }
         )
         binding.posts.adapter = adapter
-        viewModel.data.observe(this) { posts -> adapter.posts = posts }
+        viewModel.data.observe(viewLifecycleOwner) { posts -> adapter.posts = posts }
 
-        val launcherEdit = registerForActivityResult(EditPostActivityContract()) {text ->
+/*        val launcherEdit = registerForActivityResult(EditPostActivityContract()) {text ->
             text ?: return@registerForActivityResult
             viewModel.changeContent(text.toString())
             viewModel.save()
-        }
+        }*/
         viewModel.edited.observe(this) {
             if (it.id == 0L) {
                 return@observe
             }
 
-            launcherEdit.launch(it.content.toString())
+            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment)
+            //launcherEdit.launch(it.content.toString())
         }
 
-        val launcher = registerForActivityResult(NewPostActivityContract()) {text ->
+/*        val launcher = registerForActivityResult(NewPostActivityContract()) {text ->
             text ?: return@registerForActivityResult
             viewModel.changeContent(text.toString())
             viewModel.save()
-        }
+        }*/
         binding.newPost.setOnClickListener {
-            launcher.launch()
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
+
+        return binding.root
+
     }
 }
