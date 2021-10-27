@@ -68,7 +68,7 @@ class FeedFragment : Fragment() {
         binding.posts.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { posts -> adapter.posts = posts }
 
-        viewModel.edited.observe(this) {
+        viewModel.edited.observe(viewLifecycleOwner) {
             if (it.id == 0L) {
                 return@observe
             }
