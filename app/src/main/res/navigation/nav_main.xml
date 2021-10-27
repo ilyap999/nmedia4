@@ -24,13 +24,24 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_feedFragment_to_cardPostFragment"
+            app:destination="@id/cardPostFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/newPostFragment"
         android:name="ru.netology.nmedia.NewPostFragment"
         android:label="NewPostFragment" />
-    <activity
+    <fragment
         android:id="@+id/editPostFragment"
         android:name="ru.netology.nmedia.EditPostFragment"
         android:label="EditPostFragment" />
+    <fragment
+        android:id="@+id/cardPostFragment"
+        android:name="ru.netology.nmedia.CardPostFragment"
+        android:label="CardPostFragment" />
 </navigation>

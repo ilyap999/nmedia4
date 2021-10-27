@@ -16,11 +16,12 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
             val text = it.getStringExtra(Intent.EXTRA_TEXT)
             if (text.isNullOrBlank()) {
+                return@let
+            } else {
                 findNavController(R.id.nav_main)
                     .navigate(R.id.action_feedFragment_to_newPostFragment, Bundle().apply {
                         putString("TEXT_KEY", text)
                     })
-                return@let
             }
         }
     }

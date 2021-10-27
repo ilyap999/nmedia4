@@ -16,6 +16,7 @@ interface OnActionListener {
     fun onLikeClicked(post: Post) = Unit
     fun onShareClicked(post: Post) = Unit
     fun onVideoClicked(post: Post) = Unit
+    fun onContentClicked(post: Post) = Unit
 }
 
 class PostAdapter(
@@ -71,6 +72,9 @@ class PostViewHolder(
             }
             video.setOnClickListener {
                 actionListener.onVideoClicked(post)
+            }
+            content.setOnClickListener {
+                actionListener.onContentClicked(post)
             }
 
             menu.setOnClickListener {
